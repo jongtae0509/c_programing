@@ -1,44 +1,54 @@
 #include<stdio.h>
-//Æò±Õ ±¸ÇØ¼­ Ç¥¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö 
-void aver_print(int a[][3],int n){
-	int i,j=0;	//º¯¼ö ¼±¾ğ  
+//í‰ê·  êµ¬í•´ì„œ í‘œë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
+
+//ê³¼ëª© í‰ê·  ê³„ì‚° í•¨ìˆ˜ 
+double sub_aver(int a[][3],int sub,int n){
+	double sum = 0;
+	int i;
+	for(i=0;i<n;i++) sum+=a[i][sub];
+	return sum/n;
+}
+//í•™ìƒ í‰ê·  ê³„ì‚° í•¨ìˆ˜ 
+double stu_aver(int a[][3],int stu){
+	double sum = 0;
+	int i;
+	for(i=0;i<3;i++) sum+=a[stu][i];
+	return sum/3;
+}
+
+void print(int a[][3],int n){
+	int i,j=0;	//ë³€ìˆ˜ ì„ ì–¸  
 	printf("\n========================================================\n");
-	printf("		±¹¾î	 ¼öÇĞ	  ¿µ¾î	  ÇĞ»ıÀÇ Æò±Õ\n");
+	printf("		êµ­ì–´	 ìˆ˜í•™	  ì˜ì–´	  í•™ìƒì˜ í‰ê· \n");
 	
-	// Æò±Õ°è»ê ¹× Ãâ·Â 
+	// í‘œ ì¶œë ¥ 
 	for(i=0;i<n;i++){
-		double stu_sum = 0;
 		for(j=0;j<3;j++){
-			if(j==0) printf("%d¹ø ÇĞ»ı : ",i+1);	
-			stu_sum += a[i][j];
+			if(j==0) printf("%dë²ˆ í•™ìƒ : ",i+1);	
 			printf("%8d ",a[i][j]);
-			if(j==2) printf("%10.3lf\n",stu_sum/3);
+			if(j==2) printf("%10.3lf\n",stu_aver(a,i));	//í‰ê·  ê³„ì‚° í•¨ìˆ˜ í˜¸ì¶œ 
 		}
 	}
-	printf("°ú¸ñÀÇ Æò±Õ : ");
-	for(i=0;i<3;i++){
-		double sub_sum = 0;
-		for(j=0;j<n;j++) sub_sum += a[j][i];
-		printf("%8.3lf ",sub_sum/n);
-	}
+	printf("ê³¼ëª©ì˜ í‰ê·  : ");
+	for(i=0;i<3;i++) printf("%8.3lf ",sub_aver(a,i,n));	//í‰ê·  ê³„ì‚° í•¨ìˆ˜ í˜¸ì¶œ
 }
 
 int main(){
-	//»ç¿ëÇÒ º¯¼ö ¼±¾ğ 
+	//ì‚¬ìš©í•  ë³€ìˆ˜ ì„ ì–¸ 
 	int arr[100][3]={0, };
 	int n,i;
 	
-	//ÀÔ·Â¹Ş±â 
-	printf("ÇĞ»ıÀÌ ¸î¸íÀÎ°¡¿ä? : ");
+	//ì…ë ¥ë°›ê¸° 
+	printf("í•™ìƒì´ ëª‡ëª…ì¸ê°€ìš”? : ");
 	scanf("%d",&n);
 	for(i=0;i<n;i++){
-		printf("%d¹ø ÇĞ»ıÀÇ ±¹¾î ¼ºÀûÀ» ÀÔ·ÂÇÏ¼¼¿ä : ",i+1);
+		printf("%dë²ˆ í•™ìƒì˜ êµ­ì–´ ì„±ì ì„ ì…ë ¥í•˜ì„¸ìš” : ",i+1);
 		scanf("%d",&arr[i][0]);
-		printf("%d¹ø ÇĞ»ıÀÇ ¼öÇĞ ¼ºÀûÀ» ÀÔ·ÂÇÏ¼¼¿ä : ",i+1);
+		printf("%dë²ˆ í•™ìƒì˜ ìˆ˜í•™ ì„±ì ì„ ì…ë ¥í•˜ì„¸ìš” : ",i+1);
 		scanf("%d",&arr[i][1]);
-		printf("%d¹ø ÇĞ»ıÀÇ ¿µ¾î ¼ºÀûÀ» ÀÔ·ÂÇÏ¼¼¿ä : ",i+1);
+		printf("%dë²ˆ í•™ìƒì˜ ì˜ì–´ ì„±ì ì„ ì…ë ¥í•˜ì„¸ìš” : ",i+1);
 		scanf("%d",&arr[i][2]);
 	} 
-	aver_print(arr,n);	//Æò±Õ ±¸ÇÏ°í Ãâ·ÂÇÏ´Â ÇÔ¼ö È£Ãâ 
+	print(arr,n);	//ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ 
 	
 }
